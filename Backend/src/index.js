@@ -3,7 +3,7 @@ const sql = require('mssql');
 const app = express();         
 const bodyParser = require('body-parser');
 const port = 3001; //porta padrão
-const connStr = "Server=RIOSOFTDB2\\SQL2014;Database=SQL2014;User Id=versionapp;Password=Aolo@580xiM";
+const connStr = "Server=<DATABASE\\INSTANCIA>;Database=<Schemas>;User Id=<username>;Password=<password>";
 
 sql.connect(connStr)
    .then(conn => global.conn = conn)
