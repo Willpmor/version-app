@@ -41,6 +41,7 @@ Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
 [Under construction]
+
 Explain what these tests test and why
 
 ```
@@ -49,6 +50,7 @@ Give an example
 
 ### And coding style tests
 [Under construction]
+
 Explain what these tests test and why
 
 ```
@@ -57,6 +59,7 @@ Give an example
 
 ## Deployment
 [Under construction]
+
 Add additional notes about how to deploy this on a live system
 
 ## Built With
@@ -66,6 +69,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 [Under construction]
+
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
@@ -73,7 +77,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-* **Wilson Paulo Moreira Zuanazzi** - *Initial work* - [WilsonMoreira](https://github.com/Willpmor)
+* **Wilson Paulo Moreira Zuanazzi** - *Initial work* - [Wilson Moreira](https://github.com/Willpmor)
 
 See also the list of [contributors](https://github.com/Willpmor/VersionApp/graphs/contributors) who participated in this project.
 
