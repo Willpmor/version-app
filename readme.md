@@ -1,5 +1,3 @@
-# Under construction
-
 # VersionApp
 
 App to view and take care local databases with some extra management functions (DBA).
