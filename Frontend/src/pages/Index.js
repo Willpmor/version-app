@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import key from 'weak-key';
 import api from "../services/api";
-import Editar from './../img/edit.png'
+import Editar from './../img/edit.png';
 import Table from 'react-bootstrap/Table';
 
 export default class Index extends Component {
-  //Declaração de varíaveis.
   constructor(props) {
     super(props);
-    this.state = {text: '', inputText: '', mode:'view', data: [], comentario: '', index: '', rowsBase: [], items: ''};
+    this.state = {text: '', inputText: '', mode:'', data: [], comentario: '', index: '', rowsBase: [], items: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
@@ -17,26 +16,22 @@ export default class Index extends Component {
 
   //Métodos.
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.id]: e.target.id });
+    console.log(e.event.name)
   }
   
   handleSave() {
     this.setState({text: this.state.inputText, mode: 'view'});
   }
 
-  handleEdit(index) {
-    this.setState({mode: 'edit'});
-
-
-    // onTodoClick(id){
-    //   this.setState({items: this.state.items.filter(item => item.news_id == id )
-    //   });
+  handleEdit(key, index) {
+    this.setState({mode: 'edit'}, function () {
+      console.log(this.state.mode, key)        
+      
+    });
+    
   }
 
-  // ALTERAR TUDO PARA PROPS --- ATENÇÃO.
-
-
-  //Consultas de API
   async componentDidMount() {
       const response = await api.get("/clientes");
 
@@ -45,16 +40,6 @@ export default class Index extends Component {
 
   //Códigos de exibição.
   render(){
-    const { data } = this.state
-
-    const imageClick = (key) => {
-      const teste = this.state.rowsBase.filter(item => item.key === key);
-      console.log(teste);
-      
-    } 
-    
-    this.state.rowsBase = data.map(row => <tr key={key(row)}><td>{row.Base}</td><td>{row.Versão}</td><td>{row.Data_Criação}</td><td>{row.Status}</td><td><img src={Editar} onClick={()=>imageClick(key(row))} style={{cursor: 'pointer'}}alt="Editar"/>{row.Comentario}</td></tr>)  
-
     return (
       <div> 
       <header>
@@ -75,7 +60,7 @@ export default class Index extends Component {
     <section className="jumbotron text-center">
       <div className="container">
         <h1 className="jumbotron-heading">Welcome to VersionApp</h1>
-        <p className="lead text-muted">Aqui você vai conseguir visualizar todas a base de dados disponíveis em nossos servidor locais e também comentários atribuídos a mesmas.</p>
+        <p className="lead text-muted">Aqui você vai conseguir visualizar todas a base de dados disponíveis em nossos servidores locais e também comentários atribuídos a mesmas.</p>
       </div>
     </section>
 
@@ -87,15 +72,26 @@ export default class Index extends Component {
         <th>Data de Criação</th>
         <th>Status</th>
         <th>Comentário</th>
+        <th>Build</th>
       </tr>
     </thead>    
     <tbody>
-      {this.state.rowsBase}
+      {/* renderizando as bases */}
+      {this.state.data.map ((row, index) => {
+        return (
+          <tr id={key(row)} key={key(row)}>
+          <td>{row.Base}</td>
+          <td>{row.Versão}</td>
+          <td>{row.Data_Criação}</td>
+          <td>{row.Status}</td>    
+          <td><img src={Editar} style={{cursor: 'pointer'}}alt="Editar" onClick={() => this.handleEdit(key(row), index)} /> {row.Comentario}</td>
+          <td>{row.Build}</td>
+        </tr>
+        )
+      })}
     </tbody>
   </Table>  
 </div>
 );
 }
 };
-
-// this.state.rowsBase.map(row => <tr key={key(row)}><td>{row.Base}</td><td>{row.Versão}</td><td>{row.Data_Criação}</td><td>{row.Status}</td><td><img src={Editar} onClick={()=>imageClick(this.handleEdit(key(row)))} style={{cursor: 'pointer'}}alt="Editar"/>{row.Comentario}</td></tr>)  
